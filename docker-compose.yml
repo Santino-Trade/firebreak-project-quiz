@@ -10,7 +10,9 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
     web:
-        build: .
+        build:
+            context: ./firebreak_quiz_backend/
+            dockerfile: Dockerfile
         command: python manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/code
@@ -25,7 +27,6 @@ services:
     frontend:
         restart: always
         command : npm start
-        container_name: front
         build:
             context: ./firebreak_quiz_frontend/
             dockerfile: Dockerfile
