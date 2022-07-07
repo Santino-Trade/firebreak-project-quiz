@@ -1,4 +1,5 @@
 import React from 'react';
+import './ScoreCounter.css';
 
 class ScoreCounter extends React.Component {
     constructor() {
@@ -10,8 +11,8 @@ class ScoreCounter extends React.Component {
     render() {
       return (
         <div>
-          <h2>Score:</h2>
-          <p>{this.state.score}</p>
+          <h2 className="Score-Heading">Score:</h2>
+          <p className="Score-Number">{this.state.score}</p>
         </div>
       );
     }

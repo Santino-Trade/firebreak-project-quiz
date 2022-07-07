@@ -1,0 +1,17 @@
+.Answer-Button {
+    height: 100%;
+    width: 20%;
+    margin-right: 10px;
+    animation: Answer-pop-in 3s;
+}
+
+@keyframes Answer-pop-in {
+    0% {
+      opacity: 0;
+      bottom: 100px;
+    }
+    100% {
+      opacity: 1;
+      bottom: 0px;
+    }
+  }

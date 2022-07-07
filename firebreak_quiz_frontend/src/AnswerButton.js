@@ -1,4 +1,5 @@
 import React from 'react';
+import './AnswerButton.css';
 
 class AnswerButton extends React.Component {
     constructor() {
@@ -9,17 +10,20 @@ class AnswerButton extends React.Component {
     }
 
     submitAnswer = () => {
-        if (this.state.selected) {
-            this.setState({selected: false})
+        if (this.props.answerCorrect) {
+            //do something fun
         }
         else {
-            this.setState({selected: true})
+            //do something rubbish
         }
+        // increment score counter
+        // load the next question
     }
 
     render() {
       return (
         <button
+            className="Answer-Button"
             type="button"
             onClick={this.submitAnswer}
         >{this.props.answerText}</button>

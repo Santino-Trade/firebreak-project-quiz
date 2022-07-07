@@ -1,0 +1,13 @@
+.Score-Heading {
+    display: inline-block;
+    color: white;
+    margin-left: 10%;
+    font-size: large;
+}
+
+.Score-Number {
+    display: inline-block;
+    font-size: large;
+    margin-left: 10px;
+    font-weight: bold;
+}

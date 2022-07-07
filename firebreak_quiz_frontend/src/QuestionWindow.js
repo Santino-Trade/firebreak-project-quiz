@@ -1,4 +1,5 @@
 import React from 'react';
+import './QuestionWindow.css';
 
 class QuestionWindow extends React.Component {
     constructor() {
@@ -11,9 +12,9 @@ class QuestionWindow extends React.Component {
     render() {
       return (
         <div>
-          <h2>Question #</h2>
-          <p>is worth {this.state.points} point(s)...</p>
-          <p>{this.props.questionText}</p>
+          <h2 className="Question-Heading">Question {this.props.questionNumber}</h2>
+          <p className="Question-Worth">is worth {this.state.points} point(s)...</p>
+          <p className="Question-Text">{this.props.questionText}</p>
         </div>
       );
     }
