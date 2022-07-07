@@ -6,3 +6,5 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 COPY . /code/
+SHELL ["/bin/bash", "-c"]
+RUN echo I am now using bash!
