@@ -10,7 +10,11 @@ class QuestionWindow extends React.Component {
     }
     render() {
       return (
-        <h2>This is a question you will answer</h2>
+        <div>
+          <h2>Question #</h2>
+          <p>is worth {this.state.points} point(s)...</p>
+          <p>{this.props.questionText}</p>
+        </div>
       );
     }
   }

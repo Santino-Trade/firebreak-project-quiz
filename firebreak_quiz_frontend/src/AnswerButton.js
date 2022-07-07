@@ -3,11 +3,26 @@ import React from 'react';
 class AnswerButton extends React.Component {
     constructor() {
       super();
-      this.state = {color: "red"};
+      this.state = {
+          selected: false
+        };
     }
+
+    submitAnswer = () => {
+        if (this.state.selected) {
+            this.setState({selected: false})
+        }
+        else {
+            this.setState({selected: true})
+        }
+    }
+
     render() {
       return (
-        <h2>This is a possible answer to the question</h2>
+        <button
+            type="button"
+            onClick={this.submitAnswer}
+        >{this.props.answerText}</button>
       );
     }
   }
