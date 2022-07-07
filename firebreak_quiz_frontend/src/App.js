@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import AnswerButton from './AnswerButton.js';
+import QuestionWindow from './QuestionWindow';
+import ScoreCounter from './ScoreCounter';
 
 function App() {
   return (
@@ -7,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/App.js</code> and save to reload. Changes
         </p>
         <a
           className="App-link"
@@ -17,6 +20,11 @@ function App() {
         >
           Learn React
         </a>
+        <QuestionWindow/> <ScoreCounter/>
+        <AnswerButton/>
+        <AnswerButton/>
+        <AnswerButton/>
+        <AnswerButton/>
       </header>
     </div>
   );
