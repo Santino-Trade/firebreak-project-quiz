@@ -1,0 +1,23 @@
+[
+    {
+        "model": "firebreak_quiz_backend.question",
+        "pk": 1,
+        "fields": {
+            "title": "What is my favourite colour?"
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.question",
+        "pk": 2,
+        "fields": {
+            "title": "What material are traditional clogs made off?"
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.question",
+        "pk": 3,
+        "fields": {
+            "title": "Which of these is the biggest bird?"
+        }
+    }
+]

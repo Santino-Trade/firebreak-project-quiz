@@ -19,6 +19,12 @@ docker-compose up -d --build
 ```bash
 python manage.py migrate
 ```
+
+- To load some dummy data run:
+```
+python manage.py loaddata ./fixtures/*.json
+```
+
 - Create a superuser for the Django backend by running the following in the Docker Terminal opened previously. Follow the prompts it gives. These details are used to access the Django backend admin panel:
 ```
 python manage.py createsuperuser
