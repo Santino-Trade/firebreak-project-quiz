@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // Render the returned contents of the App function in the "root" element
 root.render(
   <React.StrictMode>
-    <App />
+    <App/>
   </React.StrictMode>
 );
 
