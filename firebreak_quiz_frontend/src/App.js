@@ -3,6 +3,7 @@ import './App.css';
 import AnswerButton from './AnswerButton.js';
 import QuestionWindow from './QuestionWindow';
 import ScoreCounter from './ScoreCounter';
+import QuestionApiRequest from './QuestionApiRequest';
 
 function App() {
 
@@ -11,6 +12,9 @@ function App() {
 
   var questionText = "This is the question, blah blah"
   var questionNumber = 1
+  const questionRequest = new QuestionApiRequest()
+  question = questionRequest.randomQuestion()
+
 
   var answerOne = "Answer 1"
   var answerTwo = "Answer 2"
