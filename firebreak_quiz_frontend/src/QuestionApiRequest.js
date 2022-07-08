@@ -8,10 +8,17 @@ class QuestionApiRequest extends React.Component {
         };
     }
 
-    randomQuestion = () => {
-        // Call the API for a random question
-        axios.get("http://localhost:8000/api/todos/")
-        return "A question"
+    randomQuestions = () => {
+        // Call the API for a random list of questions
+        var questionList = []
+
+        axios.get("http://localhost:8000/api/questions/").then(function (response) {
+          for (var i = 0; i < response.data.length; i++) {
+            questionList.push(response.data[i].title)
+          }
+        })
+
+        return questionList
     }
 
   }

@@ -1,43 +1,56 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import AnswerButton from './AnswerButton.js';
-import QuestionWindow from './QuestionWindow';
-import ScoreCounter from './ScoreCounter';
-import QuestionApiRequest from './QuestionApiRequest';
+import QuestionPage from './QuestionPage';
 
-function App() {
+class App extends React.Component {
 
-  // This is where we would do code to get the answers & questions from the api
-  // but the code would be in another file so it can be re-used
+  constructor() {
+    super();
+    this.state = {
+      currentView: 1,
+      buttonState: "Initial",
+      buttonText: "Start Quiz",
+      buttonDestination: 2,
+    };
+  }
 
-  var questionText = "This is the question, blah blah"
-  var questionNumber = 1
-  const questionRequest = new QuestionApiRequest()
-  question = questionRequest.randomQuestion()
+  setCurrentView(viewNumber) {
+    if (viewNumber == 2) {
+      this.setState({
+        currentView: 2,
+        buttonState: "Inplay",
+        buttonText: "Restart Quiz",
+        buttonDestination: 1
+      });
+    }
+    else {
+      this.setState({
+        currentView: 1,
+        buttonState: "Initial",
+        buttonText: "Start Quiz",
+        buttonDestination: 2
+      });
+    }
+  }
 
-
-  var answerOne = "Answer 1"
-  var answerTwo = "Answer 2"
-  var answerThree = "Answer 3"
-  var answerFour = "Answer 4"
-  var answerCorrect = true
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <ScoreCounter/>
-      </header>
-      <div className="Question-Container">
-          <QuestionWindow questionText={questionText} questionNumber={questionNumber}/>
+  render() {
+    return (
+      <div className= "App">
+        <div className={"Start-Button-Wrapper-" + this.state.buttonState}>
+          <button
+              className={"Start-Quiz-Button-" + this.state.buttonState}
+              type="button"
+              // If this is not a specific function call, we get an endless loop
+              onClick={() => this.setCurrentView(this.state.buttonDestination)}
+          >{this.state.buttonText}</button>
         </div>
-        <div className="Answer-Container">
-          <AnswerButton answerText={answerOne} is_correct={answerCorrect}/>
-          <AnswerButton answerText={answerTwo} is_correct={answerCorrect}/>
-          <AnswerButton answerText={answerThree} is_correct={answerCorrect}/>
-          <AnswerButton answerText={answerFour} is_correct={answerCorrect}/>
+        <div className="Quiz-Game-Wrapper">
+          {this.state.currentView === 2 ? <QuestionPage/> : ''}
         </div>
-    </div>
-  );
+      </div>
+    );
+  }
+
 }
 
 export default App;
