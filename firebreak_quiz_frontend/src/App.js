@@ -1,55 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import QuestionPage from './QuestionPage';
+import QuestionApiRequest from './QuestionApiRequest';
+import AnswersApiRequest from './AnswersApiRequest';
 
-class App extends React.Component {
+//class App extends React.Component {
+function App() {
 
-  constructor() {
-    super();
-    this.state = {
-      currentView: 1,
-      buttonState: "Initial",
-      buttonText: "Start Quiz",
-      buttonDestination: 2,
-    };
+  // https://reactjs.org/docs/hooks-overview.html
+  const [inGame, setInGame] = useState("Initial");
+  const [buttonText, setButtonText] = useState("Start Quiz");
+  const [quizList, setQuizList] = useState([]);
+  const [answersList, setAnswersList] = useState([]);
+
+  //https://reactjs.org/docs/hooks-effect.html
+  useEffect(() => {
+    const questionRequest = new QuestionApiRequest()
+    setQuizList(questionRequest.randomQuestions())
+    const answersRequest = new AnswersApiRequest()
+    setAnswersList(answersRequest.giveMeAnswers(quizList))
+  }, []);
+
+  function handleStartButtonClick() {
+    if (inGame == "Initial"){
+      setInGame("Inplay");
+      setButtonText("Restart Quiz");
+    }
+    else if (inGame == "Inplay") {
+      setInGame("Initial");
+      setButtonText("Start Quiz");
+    }
   }
 
-  setCurrentView(viewNumber) {
-    if (viewNumber == 2) {
-      this.setState({
-        currentView: 2,
-        buttonState: "Inplay",
-        buttonText: "Restart Quiz",
-        buttonDestination: 1
-      });
-    }
-    else {
-      this.setState({
-        currentView: 1,
-        buttonState: "Initial",
-        buttonText: "Start Quiz",
-        buttonDestination: 2
-      });
-    }
-  }
+  return (
+    <div>
+      <button
+        className={"Start-Quiz-Button-" + inGame}
+        type="button"
+        onClick={
+          () => handleStartButtonClick()
+        }
+      >{buttonText}</button>
 
-  render() {
-    return (
-      <div className= "App">
-        <div className={"Start-Button-Wrapper-" + this.state.buttonState}>
-          <button
-              className={"Start-Quiz-Button-" + this.state.buttonState}
-              type="button"
-              // If this is not a specific function call, we get an endless loop
-              onClick={() => this.setCurrentView(this.state.buttonDestination)}
-          >{this.state.buttonText}</button>
-        </div>
-        <div className="Quiz-Game-Wrapper">
-          {this.state.currentView === 2 ? <QuestionPage/> : ''}
-        </div>
+      <div className="Quiz-Game-Wrapper">
+        {inGame === "Inplay" ? <QuestionPage quizList={quizList} answersList={[[["test",false],["test2",false],["test3",false],["test4",true]],[["test5",true],["test6",false],["test7",false],["test8",false]],[["test9",false],["test10",false],["test11",true],["test12",false]],]} /> : ''}
       </div>
-    );
-  }
+    </div>
+  );
 
 }
 
