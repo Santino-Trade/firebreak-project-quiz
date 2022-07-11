@@ -4,27 +4,31 @@ import AnswerButton from './AnswerButton.js';
 import QuestionWindow from './QuestionWindow';
 import ScoreCounter from './ScoreCounter';
 import QuestionApiRequest from './QuestionApiRequest';
+import AnswersApiRequest from './AnswersApiRequest';
+import axios from "axios";
 
 function QuestionPage(props) {
 
     // https://reactjs.org/docs/hooks-overview.html
-    const [questionText, setQuestionText] = useState(props.quizList[0]);
+    const [questionText, setQuestionText] = useState(props.quizList[0]["text"]);
     const [questionNumber, setQuestionNumber] = useState(1);
     const [points, setPoints] = useState(0);
 
-    let initialAnswersList = props.answersList[0]
-    const [answerOneText, setAnswerOneText] = useState(initialAnswersList[0]);
-    const [answerTwoText, setAnswerTwoText] = useState(initialAnswersList[1]);
-    const [answerThreeText, setAnswerThreeText] = useState(initialAnswersList[2]);
-    const [answerFourText, setAnswerFourText] = useState(initialAnswersList[3]);
+    const [answerOneText, setAnswerOneText] = useState("");
+    const [answerTwoText, setAnswerTwoText] = useState("");
+    const [answerThreeText, setAnswerThreeText] = useState("");
+    const [answerFourText, setAnswerFourText] = useState("");
 
-    const [correctAnswer, setCorrectAnswer] = useState(answerOneText);
+    const [correctAnswer, setCorrectAnswer] = useState("");
 
     const [result, setResult] = useState("Initial");
     const [completedQuiz, setCompletedQuiz] = useState(0);
 
+    useEffect(() => {
+      setAnswers(props.quizList[0]["id"])
+    }, []);
+ 
     function submitAnswer(answerGiven) {
-
       if (answerGiven == correctAnswer) {
         let newScore = points + 1
         setPoints(newScore)
@@ -33,7 +37,28 @@ function QuestionPage(props) {
       else {
         setResult("Wrong")
       }
-  
+    }
+
+    function setAnswers(questionId) {
+      let answersList = []
+      let correctAnswer = ""
+      axios.get("http://localhost:8000/api/questions/"+questionId+"/answers/").then(function (response) {
+        for (var i = 0; i < 4; i++) {
+          let answerContent = response.data[i].answer
+          let answerCorrect = response.data[i].correct
+          if (answerCorrect == true) {
+            correctAnswer = answerContent
+          }
+          answersList.push(answerContent);
+        }
+      }).then(function () {
+        setAnswerOneText(answersList[0])
+        setAnswerTwoText(answersList[1])
+        setAnswerThreeText(answersList[2])
+        setAnswerFourText(answersList[3])
+        setCorrectAnswer(correctAnswer)
+      })
+      console.log(correctAnswer)
     }
 
     function clearOverlay() {
@@ -58,14 +83,9 @@ function QuestionPage(props) {
 
       setQuestionNumber(questionNumber + 1)
 
-      setQuestionText(props.quizList[questionNumber])
+      setQuestionText(props.quizList[questionNumber]["text"])
 
-      let nextAnswersList = props.answersList[questionNumber]
-      setAnswerOneText(nextAnswersList[0])
-      setAnswerTwoText(nextAnswersList[1])
-      setAnswerThreeText(nextAnswersList[2])
-      setAnswerFourText(nextAnswersList[3])
-      setCorrectAnswer(answerOneText)
+      setAnswers(props.quizList[questionNumber]["id"])
     }
 
     function completeQuiz() {
