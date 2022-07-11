@@ -1,4 +1,4 @@
-@keyframes Question-fade {
+@keyframes question-fade {
     0% {
       opacity: 0;
     }
@@ -9,18 +9,18 @@
 
 .Question-Heading {
     color: white;
-    animation: Question-fade 3s;
+    animation: question-fade 3s;
     font-size: 50px;
 }
 
 .Question-Worth {
     color: white;
-    animation: Question-fade 6s;
+    animation: question-fade 6s;
     font-size: 25px;
 }
 
 .Question-Text {
     color: white;
-    animation: Question-fade 9s;
+    animation: question-fade 9s;
     font-size: 40px;
 }
