@@ -3,21 +3,24 @@
         "model": "firebreak_quiz_backend.question",
         "pk": 1,
         "fields": {
-            "title": "What is my favourite colour?"
+            "title": "What is my favourite colour?",
+            "points": 1
         }
     },
     {
         "model": "firebreak_quiz_backend.question",
         "pk": 2,
         "fields": {
-            "title": "What material are traditional clogs made off?"
+            "title": "What material are traditional clogs made off?",
+            "points": 4
         }
     },
     {
         "model": "firebreak_quiz_backend.question",
         "pk": 3,
         "fields": {
-            "title": "Which of these is the biggest bird?"
+            "title": "Which of these is the biggest bird?",
+            "points": 2
         }
     }
 ]
