@@ -19,7 +19,9 @@ from rest_framework import routers
 from firebreak_quiz_backend import views
 
 router = routers.DefaultRouter()
-router.register(r"questions", views.QuestionView, "question")
-router.register(r"answers", views.AnswerView, "answer")
+router.register(r"questions", views.QuestionView, basename="question")
 
-urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls))]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
+]
