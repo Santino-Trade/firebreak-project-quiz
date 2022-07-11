@@ -3,6 +3,7 @@ import './App.css';
 import QuestionPage from './QuestionPage';
 import QuestionApiRequest from './QuestionApiRequest';
 import AnswersApiRequest from './AnswersApiRequest';
+import axios from "axios";
 
 //class App extends React.Component {
 function App() {
@@ -16,9 +17,8 @@ function App() {
   //https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
     const questionRequest = new QuestionApiRequest()
-    setQuizList(questionRequest.randomQuestions())
-    const answersRequest = new AnswersApiRequest()
-    setAnswersList(answersRequest.giveMeAnswers(quizList))
+    let questionDict = questionRequest.randomQuestions()
+    setQuizList(questionDict)
   }, []);
 
   function handleStartButtonClick() {

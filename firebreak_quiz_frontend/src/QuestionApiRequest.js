@@ -14,7 +14,10 @@ class QuestionApiRequest extends React.Component {
 
         axios.get("http://localhost:8000/api/questions/").then(function (response) {
           for (var i = 0; i < response.data.length; i++) {
-            questionList.push(response.data[i].title)
+            let questionId = response.data[i].id
+            let questionContent = response.data[i].title
+            const question = {id:questionId, text:questionContent}
+            questionList.push(question);
           }
         })
 
