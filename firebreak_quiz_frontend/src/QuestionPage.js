@@ -27,11 +27,28 @@ function QuestionPage(props) {
       if (answerGiven == correctAnswer) {
         let newScore = points + 1
         setPoints(newScore)
-        setResult("Success")
+        setResult("Correct")
       }
       else {
-        setResult("Fail")
+        setResult("Wrong")
       }
+  
+    }
+
+    function clearOverlay() {
+      const element = document.getElementById("Result-Overlay-"+result);
+      element.classList.add('Result-Closer');
+
+      loadNextQuestion();
+
+      //Delay a second to play fade-out animation
+      setTimeout(() => {
+        setResult("Initial");
+      }, 1000);
+    }
+
+    function loadNextQuestion() {
+      // As the overlay is fading out, we want to load the next question
 
       setQuestionNumber(questionNumber + 1)
 
@@ -43,21 +60,16 @@ function QuestionPage(props) {
       setAnswerThreeText(nextAnswersList[2])
       setAnswerFourText(nextAnswersList[3])
       setCorrectAnswer(answerOneText)
-  
-    }
-
-    function clearOverlay() {
-      setResult("Initial")
     }
 
     return (
       <div className="App">
+        <div className={"Result-Overlay-" + result} id={"Result-Overlay-" + result} onClick={() => clearOverlay()}>
+          <p className="Result-Text">{result}!</p>
+        </div>
         <header className="App-header">
           <ScoreCounter points={points}/>
         </header>
-        <div className={"Result-Overlay-" + result} onClick={() => clearOverlay()}>
-          {result}
-        </div>
         <div className="Question-Container">
             <QuestionWindow questionText={questionText} questionNumber={questionNumber}/>
           </div>
