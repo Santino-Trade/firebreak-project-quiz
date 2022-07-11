@@ -21,6 +21,7 @@ function QuestionPage(props) {
     const [correctAnswer, setCorrectAnswer] = useState(answerOneText);
 
     const [result, setResult] = useState("Initial");
+    const [completedQuiz, setCompletedQuiz] = useState(0);
 
     function submitAnswer(answerGiven) {
 
@@ -39,7 +40,12 @@ function QuestionPage(props) {
       const element = document.getElementById("Result-Overlay-"+result);
       element.classList.add('Result-Closer');
 
-      loadNextQuestion();
+      if (props.quizList.length == questionNumber) {
+        completeQuiz();
+      }
+      else {
+        loadNextQuestion();
+      }
 
       //Delay a second to play fade-out animation
       setTimeout(() => {
@@ -62,41 +68,59 @@ function QuestionPage(props) {
       setCorrectAnswer(answerOneText)
     }
 
-    return (
-      <div className="App">
-        <div className={"Result-Overlay-" + result} id={"Result-Overlay-" + result} onClick={() => clearOverlay()}>
-          <p className="Result-Text">{result}!</p>
+    function completeQuiz() {
+      // Once the question number matches the quiz length, finish the quiz
+      setCompletedQuiz(1)
+    }
+
+    if (completedQuiz==0) {
+      return (
+        <div className="App">
+          <div className={"Result-Overlay-" + result} id={"Result-Overlay-" + result} onClick={() => clearOverlay()}>
+            <p className="Result-Text">{result}!</p>
+          </div>
+          <header className="App-header">
+            <ScoreCounter points={points}/>
+          </header>
+          <div className="Question-Container">
+              <QuestionWindow questionText={questionText} questionNumber={questionNumber}/>
+            </div>
+            <div className="Answer-Container">
+              <button
+                className="Answer-Button"
+                type="button"
+                onClick={() => submitAnswer(answerOneText)}
+              >{answerOneText}</button>
+              <button
+                className="Answer-Button"
+                type="button"
+                onClick={() => submitAnswer(answerTwoText)}
+              >{answerTwoText}</button>
+              <button
+                className="Answer-Button"
+                type="button"
+                onClick={() => submitAnswer(answerThreeText)}
+              >{answerThreeText}</button>
+              <button
+                className="Answer-Button"
+                type="button"
+                onClick={() => submitAnswer(answerFourText)}
+              >{answerFourText}</button>
+            </div>
         </div>
-        <header className="App-header">
-          <ScoreCounter points={points}/>
-        </header>
-        <div className="Question-Container">
-            <QuestionWindow questionText={questionText} questionNumber={questionNumber}/>
+      );
+    }
+    else {
+      return (
+        <div className="App">
+          <div className="Complete-Display">
+            <p className="Complete-Text">Quiz Complete!</p>
+            <p className="Final-Score-Text">Your final score was...</p>
+            <p className="Final-Score">{points}</p>
           </div>
-          <div className="Answer-Container">
-            <button
-              className="Answer-Button"
-              type="button"
-              onClick={() => submitAnswer(answerOneText)}
-            >{answerOneText}</button>
-            <button
-              className="Answer-Button"
-              type="button"
-              onClick={() => submitAnswer(answerTwoText)}
-            >{answerTwoText}</button>
-            <button
-              className="Answer-Button"
-              type="button"
-              onClick={() => submitAnswer(answerThreeText)}
-            >{answerThreeText}</button>
-            <button
-              className="Answer-Button"
-              type="button"
-              onClick={() => submitAnswer(answerFourText)}
-            >{answerFourText}</button>
-          </div>
-      </div>
-    );
+        </div>
+      );
+    }
 
 }
 
