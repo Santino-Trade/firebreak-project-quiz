@@ -9,10 +9,8 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):
-    # class QuestionSerializer(serializers.ModelSerializer):
     id = serializers.HyperlinkedIdentityField(view_name="question-detail")
     answers = serializers.HyperlinkedIdentityField(view_name="question-answers")
-    # answers = AnswerSerializer(many=True, read_only=True)
 
     class Meta:
         model = Question
