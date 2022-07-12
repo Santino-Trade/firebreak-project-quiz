@@ -4,8 +4,8 @@
         "pk": 1,
         "fields": {
             "question": 3,
-            "answer": "Starling",
-            "correct": false
+            "answer": "Penguin",
+            "correct": true
         }
     },
     {
@@ -67,7 +67,7 @@
         "pk": 8,
         "fields": {
             "question": 1,
-            "answer": "Red",
+            "answer": "Black",
             "correct": false
         }
     },
@@ -148,8 +148,80 @@
         "pk": 17,
         "fields": {
             "question": 3,
-            "answer": "Penguin",
+            "answer": "Starling",
+            "correct": false
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 18,
+        "fields": {
+            "question": 4,
+            "answer": "Portugal",
+            "correct": false
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 19,
+        "fields": {
+            "question": 4,
+            "answer": "Brazil",
+            "correct": false
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 20,
+        "fields": {
+            "question": 4,
+            "answer": "Italy",
             "correct": true
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 21,
+        "fields": {
+            "question": 4,
+            "answer": "Germany",
+            "correct": false
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 22,
+        "fields": {
+            "question": 5,
+            "answer": "William The Conquerer",
+            "correct": true
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 23,
+        "fields": {
+            "question": 5,
+            "answer": "Conan The Barbarian",
+            "correct": false
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 24,
+        "fields": {
+            "question": 5,
+            "answer": "Charles I",
+            "correct": false
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.answer",
+        "pk": 26,
+        "fields": {
+            "question": 5,
+            "answer": "Elizibeth II",
+            "correct": false
         }
     }
 ]

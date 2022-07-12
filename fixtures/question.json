@@ -3,7 +3,7 @@
         "model": "firebreak_quiz_backend.question",
         "pk": 1,
         "fields": {
-            "title": "What is my favourite colour?",
+            "title": "What is opposite red on the colour wheel?",
             "points": 1
         }
     },
@@ -21,6 +21,20 @@
         "fields": {
             "title": "Which of these is the biggest bird?",
             "points": 2
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.question",
+        "pk": 4,
+        "fields": {
+            "title": "Which country won the 2006 World Cup?"
+        }
+    },
+    {
+        "model": "firebreak_quiz_backend.question",
+        "pk": 5,
+        "fields": {
+            "title": "Which monarch won the battle of Hastings in 1066?"
         }
     }
 ]
