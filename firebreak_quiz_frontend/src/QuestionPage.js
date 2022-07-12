@@ -6,6 +6,7 @@ import ScoreCounter from './ScoreCounter';
 import QuestionApiRequest from './QuestionApiRequest';
 import AnswersApiRequest from './AnswersApiRequest';
 import NameForm from './NameForm';
+import Leaderboard from './Leaderboard';
 import axios from "axios";
 
 function QuestionPage(props) {
@@ -59,7 +60,6 @@ function QuestionPage(props) {
         setAnswerFourText(answersList[3])
         setCorrectAnswer(correctAnswer)
       })
-      console.log(correctAnswer)
     }
 
     function clearOverlay() {
@@ -139,6 +139,7 @@ function QuestionPage(props) {
             <p className="Final-Score-Text">Your final score was...</p>
             <p className="Final-Score">{points}</p>
             <NameForm score={points}/>
+            <Leaderboard/>
           </div>
         </div>
       );
