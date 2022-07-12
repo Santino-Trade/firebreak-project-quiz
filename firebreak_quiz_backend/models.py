@@ -22,3 +22,7 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.answer
+
+class UserScores(models.Model):
+    name = models.CharField(max_length=100)
+    final_score = models.IntegerField()

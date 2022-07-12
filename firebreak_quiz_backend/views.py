@@ -3,8 +3,8 @@ from rest_framework import generics, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .serializers import AnswerSerializer, QuestionSerializer
-from .models import Answer, Question
+from .serializers import AnswerSerializer, QuestionSerializer, UserScoresSerializer
+from .models import Answer, Question, UserScores
 
 from pprint import pprint
 
@@ -26,3 +26,7 @@ class QuestionView(viewsets.ModelViewSet):
         queryset = Answer.objects.filter(question_id=pk)
         serializer = AnswerSerializer(queryset, many=True)
         return Response(serializer.data)
+
+class UserScoresView(viewsets.ModelViewSet):
+    serializer_class = UserScoresSerializer
+    queryset = UserScores.objects.all()

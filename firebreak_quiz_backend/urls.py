@@ -20,6 +20,7 @@ from firebreak_quiz_backend import views
 
 router = routers.DefaultRouter()
 router.register(r"questions", views.QuestionView, basename="question")
+router.register(r"scores", views.UserScoresView, basename="scores")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
