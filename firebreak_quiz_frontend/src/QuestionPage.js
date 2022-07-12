@@ -5,6 +5,7 @@ import QuestionWindow from './QuestionWindow';
 import ScoreCounter from './ScoreCounter';
 import QuestionApiRequest from './QuestionApiRequest';
 import AnswersApiRequest from './AnswersApiRequest';
+import NameForm from './NameForm';
 import axios from "axios";
 
 function QuestionPage(props) {
@@ -137,6 +138,7 @@ function QuestionPage(props) {
             <p className="Complete-Text">Quiz Complete!</p>
             <p className="Final-Score-Text">Your final score was...</p>
             <p className="Final-Score">{points}</p>
+            <NameForm score={points}/>
           </div>
         </div>
       );

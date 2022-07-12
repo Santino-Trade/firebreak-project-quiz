@@ -12,7 +12,6 @@ function App() {
   const [inGame, setInGame] = useState("Initial");
   const [buttonText, setButtonText] = useState("Start Quiz");
   const [quizList, setQuizList] = useState([]);
-  const [answersList, setAnswersList] = useState([]);
 
   //https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
@@ -43,7 +42,7 @@ function App() {
       >{buttonText}</button>
 
       <div className="Quiz-Game-Wrapper">
-        {inGame === "Inplay" ? <QuestionPage quizList={quizList} answersList={[[["test",false],["test2",false],["test3",false],["test4",true]],[["test5",true],["test6",false],["test7",false],["test8",false]],[["test9",false],["test10",false],["test11",true],["test12",false]],]} /> : ''}
+        {inGame === "Inplay" ? <QuestionPage quizList={quizList} /> : ''}
       </div>
     </div>
   );

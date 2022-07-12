@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Answer, Question
+from .models import Answer, Question, UserScores
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -8,10 +8,12 @@ class AnswerSerializer(serializers.ModelSerializer):
         fields = ("id", "answer", "correct")
 
 
-class QuestionSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.HyperlinkedIdentityField(view_name="question-detail")
-    answers = serializers.HyperlinkedIdentityField(view_name="question-answers")
-
+class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ("id", "title", "points", "answers")
+        fields = ("id", "title", "points")
+
+class UserScoresSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserScores
+        fields = ("id", "name", "final_score")
